@@ -9,26 +9,26 @@ public class BasicOperations {
         System.out.println("=== Задача 1: Сложение и вычитание чисел ===");
         getSumAndSubtraction(sc.nextInt(), sc.nextInt());
 
-        System.out.println("=== Задача 2: Площадь прямоугольника ===");
+        System.out.println("\n=== Задача 2: Площадь прямоугольника ===");
         System.out.print("Ширина: ");
         double width = sc.nextDouble();
         System.out.print("Длина: ");
         double height = sc.nextDouble();
         System.out.printf("Площадь: %.0f\n", getAreaOfRectangle(width, height));
 
-        System.out.println("=== Задача 3: Операции с остатком от деления ===");
+        System.out.println("\n=== Задача 3: Операции с остатком от деления ===");
         System.out.print("Введите первое число: ");
         int a = sc.nextInt();
         System.out.print("Введите второе число: ");
         int b = sc.nextInt();
         getDivisionAndModulo(a, b);
 
-        System.out.println("=== Задача 4: Перевод градусов Цельсия в Фаренгейты ===");
+        System.out.println("\n=== Задача 4: Перевод градусов Цельсия в Фаренгейты ===");
         System.out.print("Введите температуру в Цельсиях: ");
         double celsium = sc.nextDouble();
         System.out.printf("Температура в Фаренгейтах: %.0f\n", convertCelsiumToFahrenheit(celsium));
 
-        System.out.println("=== Задача 5: Обмен значениями переменных ===");
+        System.out.println("\n=== Задача 5: Обмен значениями переменных ===");
         int c = 5;
         int d = 10;
         System.out.printf("До обмена: a = %d, b = %d\n", c, d);
