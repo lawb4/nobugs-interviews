@@ -8,6 +8,8 @@ import meet3.hw.task7.Dog;
 import meet3.hw.task8.BankAccount;
 import meet3.hw.task8.CheckingAccount;
 import meet3.hw.task8.SavingsAccount;
+import meet3.hw.task9.Book;
+import meet3.hw.task9.Library;
 
 public class Main {
     public static void main(String[] args) {
@@ -70,6 +72,36 @@ public class Main {
             bankAccount.calculateInterest();
 
             System.out.println();
+        }
+
+        System.out.println("\n=== Task 9 Library ===");
+
+        Library library = new Library();
+
+        Book book1 = new Book("title1", "author1", 2001, true);
+        Book book2 = new Book("title2", "author2", 2002, true);
+        Book book3 = new Book("title3", "author3", 2003, true);
+
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+
+        System.out.println("3 books should be available. Let's find out!");
+        library.printAllAvailableBooks();
+
+        book2.borrowBook();
+        System.out.println("Now only 2 books should be available. Let's find out!");
+        library.printAllAvailableBooks();
+
+        book2.returnBook();
+        System.out.println("3 books should be available again. Let's find out!");
+        library.printAllAvailableBooks();
+
+        System.out.println("Let's find out if there is a book I wanted to read.");
+        try {
+            System.out.println(library.findBookByName("title3").getBookInfo());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
