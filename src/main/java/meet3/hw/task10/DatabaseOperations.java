@@ -6,5 +6,5 @@ public interface DatabaseOperations {
 
     void saveOrder(Order order);
 
-    void getOrder(int orderId);
+    Order getOrder(String orderId);
 }

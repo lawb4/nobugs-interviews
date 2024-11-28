@@ -4,14 +4,16 @@ package meet3.hw.task10;
 Clothing: скидка 15% при покупке свыше $50.*/
 public class Clothing extends Product {
 
-    @Override
-    public void applyDiscount(Order order) {
-        double priceWithDiscount = order.getTotalPrice() * (1 - (double) 15 / 100);
+    public Clothing(String id, String name, double price) {
+        super(id, name, price);
+    }
 
-        if (order.getTotalPrice() > 50) {
-            order.setTotalPrice(priceWithDiscount);
+    @Override
+    public void applyDiscount() {
+        if (this.getPrice() > 50) {
+            this.setPrice(this.getPrice() * 0.85);
         } else {
-            System.out.println("Total price is less than $50. No discount is applied");
+            System.out.println("This clothing product's price is less than $50. No discount is applied for this product");
         }
     }
 }

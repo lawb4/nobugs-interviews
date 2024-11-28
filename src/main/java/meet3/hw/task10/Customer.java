@@ -7,6 +7,18 @@ Customer: добавляет поле cart (корзина), метод для �
 public class Customer extends User {
     private ArrayList<Product> cart = new ArrayList<>();
 
+    public Customer(String id, String name, String email) {
+        super(id, name, email);
+    }
+
+    public ArrayList<Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(ArrayList<Product> cart) {
+        this.cart = cart;
+    }
+
     public void addProduct(Product product) {
         cart.add(product);
     }

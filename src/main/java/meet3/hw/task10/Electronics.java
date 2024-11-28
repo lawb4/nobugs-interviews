@@ -4,14 +4,16 @@ package meet3.hw.task10;
 Electronics: скидка 10% при покупке свыше $100.*/
 public class Electronics extends Product {
 
-    @Override
-    public void applyDiscount(Order order) {
-        double priceWithDiscount = order.getTotalPrice() * (1 - (double) 10 / 100);
+    public Electronics(String id, String name, double price) {
+        super(id, name, price);
+    }
 
-        if (order.getTotalPrice() > 100) {
-            order.setTotalPrice(priceWithDiscount);
+    @Override
+    public void applyDiscount() {
+        if (this.getPrice() > 100) {
+            this.setPrice(this.getPrice() * 0.90);
         } else {
-            System.out.println("Total price is less than $50. No discount is applied");
+            System.out.println("This electronic product's price is less than $100. No discount is applied for this product");
         }
     }
 }

@@ -8,6 +8,12 @@ public class User {
     private String name;
     private String email;
 
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     public String getId() {
         return id;
     }
@@ -33,6 +39,6 @@ public class User {
     }
 
     public void displayUserInfo() {
-        System.out.printf("id = , name = , email = ", this.id, this.name, this.email);
+        System.out.printf("id = %s, name = %s, email = %s", this.id, this.name, this.email);
     }
 }
