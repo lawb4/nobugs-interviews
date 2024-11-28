@@ -9,31 +9,13 @@ import java.util.ArrayList;
 public class Order {
     private String orderId;
     private Customer customer;
-    private ArrayList<Product> productList = getCustomer().getCart();
-    private double totalPrice;
+    private ArrayList<Product> productList;
+    private double totalPrice = 0d;
 
-    public Order(String orderId) {
+    public Order(String orderId, Customer customer, ArrayList<Product> productList) {
         this.orderId = orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public ArrayList<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
+        this.productList = new ArrayList<>(customer.getCart());
     }
 
     public String getOrderId() {
@@ -44,12 +26,7 @@ public class Order {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public void calculateTotalPrice() {
-
         for (Product product : productList) {
             product.applyDiscount();
             this.totalPrice += product.getPrice();

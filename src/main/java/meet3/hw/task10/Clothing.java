@@ -13,7 +13,7 @@ public class Clothing extends Product {
         if (this.getPrice() > 50) {
             this.setPrice(this.getPrice() * 0.85);
         } else {
-            System.out.println("This clothing product's price is less than $50. No discount is applied for this product");
+            System.out.printf("The %s product's price is less than $50. No discount is applied for this product\n", getName());
         }
     }
 }

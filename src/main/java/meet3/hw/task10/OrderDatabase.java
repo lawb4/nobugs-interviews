@@ -10,7 +10,7 @@ public class OrderDatabase implements DatabaseOperations {
     @Override
     public void saveOrder(Order order) {
         orders.put(order.getOrderId(), order);
-        System.out.printf("Order saved with id: %s\n", order.getOrderId());
+        System.out.printf("Order saved with id = %s\n", order.getOrderId());
     }
 
     @Override

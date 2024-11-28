@@ -15,10 +15,6 @@ public class Customer extends User {
         return cart;
     }
 
-    public void setCart(ArrayList<Product> cart) {
-        this.cart = cart;
-    }
-
     public void addProduct(Product product) {
         cart.add(product);
     }

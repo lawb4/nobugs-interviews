@@ -30,15 +30,7 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void displayUserInfo() {
-        System.out.printf("id = %s, name = %s, email = %s", this.id, this.name, this.email);
+        System.out.printf("id = %s, name = %s, email = %s\n", id, name, email);
     }
 }

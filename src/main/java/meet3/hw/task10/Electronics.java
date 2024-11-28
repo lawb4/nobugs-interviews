@@ -13,7 +13,7 @@ public class Electronics extends Product {
         if (this.getPrice() > 100) {
             this.setPrice(this.getPrice() * 0.90);
         } else {
-            System.out.println("This electronic product's price is less than $100. No discount is applied for this product");
+            System.out.printf("The %s product's price is less than $100. No discount is applied for this product.\n", getName());
         }
     }
 }
