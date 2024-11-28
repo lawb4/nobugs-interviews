@@ -4,7 +4,7 @@ package meet3.hw.task10;
 Поля: id, name, price.
 Абстрактный метод applyDiscount().*/
 public abstract class Product {
-    private String id;
+    private final String id;
     private String name;
     private double price;
 
@@ -16,10 +16,6 @@ public abstract class Product {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 Метод для расчета общей стоимости заказа.
 */
 public class Order {
-    private String orderId;
+    private final String orderId;
     private Customer customer;
     private ArrayList<Product> productList;
     private double totalPrice = 0d;
 
-    public Order(String orderId, Customer customer, ArrayList<Product> productList) {
+    public Order(String orderId, Customer customer) {
         this.orderId = orderId;
         this.customer = customer;
         this.productList = new ArrayList<>(customer.getCart());
@@ -27,6 +27,7 @@ public class Order {
     }
 
     public void calculateTotalPrice() {
+        totalPrice = 0; // to avoid subsequent counting and adding to totalPrice
         for (Product product : productList) {
             product.applyDiscount();
             this.totalPrice += product.getPrice();

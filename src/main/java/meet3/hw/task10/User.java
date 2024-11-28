@@ -4,7 +4,7 @@ package meet3.hw.task10;
 Поля: id, name, email.
 Методы: геттеры/сеттеры, displayUserInfo().*/
 public class User {
-    private String id;
+    private final String id;
     private String name;
     private String email;
 
@@ -16,10 +16,6 @@ public class User {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {

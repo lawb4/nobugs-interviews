@@ -19,7 +19,7 @@ public class Main {
         customer.addProduct(iphone);
         customer.addProduct(jeans);
 
-        Order order = new Order("orderId001", customer, customer.getCart());
+        Order order = new Order("orderId001", customer);
         order.calculateTotalPrice();
         System.out.println("Total order price = " + order.getTotalPrice());
 
