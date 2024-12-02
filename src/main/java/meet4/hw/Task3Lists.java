@@ -6,7 +6,7 @@ import java.util.List;
 /*Задача 3: Списки (Lists)
 Разработать метод, который принимает список целых чисел и удаляет из него все четные числа.
 */
-public class Task3 {
+public class Task3Lists {
     public static void main(String[] args) {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i <= 10; i++) {

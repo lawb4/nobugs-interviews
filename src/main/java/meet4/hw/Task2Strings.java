@@ -3,7 +3,7 @@ package meet4.hw;
 /*Задача 2: Строки (Strings)
 Создать функцию, которая принимает строку и возвращает её в обратном порядке.
 */
-public class Task2 {
+public class Task2Strings {
     public static void main(String[] args) {
         String input = "Создать функцию, которая принимает строку и возвращает её в обратном порядке.";
         System.out.println(reverseString(input));
