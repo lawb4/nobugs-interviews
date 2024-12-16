@@ -1,7 +1,6 @@
 package meet7.hw.booker.specs;
 
 import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -21,7 +20,6 @@ public class RequestSpec {
                         new RequestLoggingFilter(),
                         new ResponseLoggingFilter(),
                         new AllureRestAssured()))
-                //.setBaseUri("https://restful-booker.herokuapp.com")
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON);
     }
@@ -32,7 +30,7 @@ public class RequestSpec {
 
     public static RequestSpecification tokenSpec() {
         return baseSpecBuilder()
-                .addCookie("token", BookerUtils.generateToken()) // Add the token as a cookie
+                .addCookie("token", BookerUtils.generateToken())
                 .build();
     }
 }
