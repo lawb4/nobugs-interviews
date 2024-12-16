@@ -38,7 +38,6 @@ public class ValidatedBookerRequest extends Request implements CrudInterface<Boo
         return bookerRequest.delete(id)
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
-        //.log().all();
     }
 }
 

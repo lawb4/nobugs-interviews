@@ -7,6 +7,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import meet7.hw.booker.utils.BookerUtils;
 
 import java.util.List;
 
@@ -29,27 +30,9 @@ public class RequestSpec {
         return baseSpecBuilder().build();
     }
 
-    //    public static RequestSpecification authSpec() {
-//        return baseSpecBuilder()
-//                .setBody("""
-//                        {
-//                            "username": "admin",
-//                            "password": "password123"
-//                        }
-//                        """)
-//                .build();
-//    }
-    public static RequestSpecification authSpec() {
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
-        authScheme.setUserName("admin");
-        authScheme.setPassword("admin");
-
-        return baseSpecBuilder().setAuth(authScheme).build();
-    }
-
-    public static RequestSpecification tokenSpec(String token) {
+    public static RequestSpecification tokenSpec() {
         return baseSpecBuilder()
-                .addCookie("token", token) // Add the token as a cookie
+                .addCookie("token", BookerUtils.generateToken()) // Add the token as a cookie
                 .build();
     }
 }

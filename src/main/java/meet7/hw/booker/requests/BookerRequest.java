@@ -2,8 +2,8 @@ package meet7.hw.booker.requests;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import meet7.hw.booker.utils.BookerUtils;
 import meet7.hw.booker.models.Booking;
-import meet7.hw.booker.specs.RequestSpec;
 
 import static io.restassured.RestAssured.given;
 
@@ -18,6 +18,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking> {
     @Override
     public Response create(Booking booking) {
         return given()
+                .spec(reqSpec)
                 .body(booking)
                 .when()
                 .post(BOOKING_ENDPOINT);
@@ -26,6 +27,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking> {
     @Override
     public Response read(String id) {
         return given()
+                .spec(reqSpec)
                 .get(BOOKING_ENDPOINT + id);
     }
 
@@ -37,7 +39,8 @@ public class BookerRequest extends Request implements CrudInterface<Booking> {
     @Override
     public Response delete(String id) {
         return given()
-                //.cookie("token", token)
+                .spec(reqSpec)
+                //.cookie("token", BookerUtils.generateToken())
                 .delete(BOOKING_ENDPOINT + id);
     }
 }
