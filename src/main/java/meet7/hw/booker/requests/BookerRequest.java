@@ -1,14 +1,19 @@
 package meet7.hw.booker.requests;
 
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import meet7.hw.booker.models.Booking;
+import meet7.hw.booker.specs.RequestSpec;
 
 import static io.restassured.RestAssured.given;
 
-public class BookerRequest implements CrudInterface<Booking> {
+public class BookerRequest extends Request implements CrudInterface<Booking> {
 
-    //private final String BASE_URL = "https://restful-booker.herokuapp.com";
     private final String BOOKING_ENDPOINT = "/booking/";
+
+    public BookerRequest(RequestSpecification reqSpec) {
+        super(reqSpec);
+    }
 
     @Override
     public Response create(Booking booking) {
@@ -32,6 +37,7 @@ public class BookerRequest implements CrudInterface<Booking> {
     @Override
     public Response delete(String id) {
         return given()
+                //.cookie("token", token)
                 .delete(BOOKING_ENDPOINT + id);
     }
 }
