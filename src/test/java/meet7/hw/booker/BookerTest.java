@@ -13,10 +13,11 @@ public class BookerTest {
 
     @BeforeAll
     public static void setupTests() {
-        RestAssured.baseURI = "https://restful-booker.herokuapp.com";
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .build();
+        //RestAssured.baseURI = "https://restful-booker.herokuapp.com";
+//        RestAssured.requestSpecification = new RequestSpecBuilder()
+//                .setContentType(ContentType.JSON)
+//                .build();
+        //RestAssured.requestSpecification = RequestSpec.baseSpec();
     }
 
     @Test

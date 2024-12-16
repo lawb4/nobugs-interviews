@@ -16,12 +16,12 @@ public class RequestSpec {
     private static RequestSpecBuilder baseSpecBuilder() {
 
         return new RequestSpecBuilder()
+                .setBaseUri("https://restful-booker.herokuapp.com")
                 .addFilters(List.of(
                         new RequestLoggingFilter(),
                         new ResponseLoggingFilter(),
                         new AllureRestAssured()))
-                .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON);
+                .setContentType(ContentType.JSON);
     }
 
     public static RequestSpecification baseSpec() {
