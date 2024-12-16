@@ -1,5 +1,6 @@
 package meet7.hw.booker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,9 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Booking {
     @JsonProperty("bookingid")
     private String id;
+//    @JsonProperty("booking")
+//    private Booking booking;
     @JsonProperty("firstname")
     private String firstName;
     @JsonProperty("lastname")
@@ -24,10 +28,7 @@ public class Booking {
     @JsonProperty("depositpaid")
     private boolean isDepositPaid;
     @JsonProperty("bookingdates")
-    private BookingDate bookingDate;
+    private BookingDate bookingDates;
     @JsonProperty("additionalneeds")
     private String additionalNeeds;
-
-    @JsonProperty("booking")
-    private Booking booking; // Added to capture the nested "booking" field
 }

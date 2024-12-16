@@ -14,7 +14,6 @@ public class RequestSpec {
     private RequestSpecBuilder requestSpecBuilder;
 
     private static RequestSpecBuilder baseSpecBuilder() {
-
         return new RequestSpecBuilder()
                 .setBaseUri("https://restful-booker.herokuapp.com")
                 .addFilters(List.of(
@@ -24,11 +23,11 @@ public class RequestSpec {
                 .setContentType(ContentType.JSON);
     }
 
-    public static RequestSpecification baseSpec() {
+    public static RequestSpecification noAuthSpec() {
         return baseSpecBuilder().build();
     }
 
-    public static RequestSpecification tokenSpec() {
+    public static RequestSpecification tokenAuthSpec() {
         return baseSpecBuilder()
                 .addCookie("token", BookerUtils.generateToken())
                 .build();

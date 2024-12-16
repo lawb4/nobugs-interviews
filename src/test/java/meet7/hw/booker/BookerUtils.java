@@ -7,13 +7,25 @@ public class BookerUtils {
 
     public static Booking createBaseBookingObject() {
         return Booking.builder()
-                .firstName("Jim")
+                .firstName("Viktor")
+                .lastName("Manuel")
+                .totalPrice(111)
+                .isDepositPaid(true)
+                .bookingDates(BookingDate.builder()
+                        .checkIn("2018-01-01")
+                        .checkOut("2019-01-01").build())
+                .additionalNeeds("Breakfast").build();
+    }
+
+    public static Booking createBaseBookingObjectWithCustomFirstName(String firstName) {
+        return Booking.builder()
+                .firstName(firstName)
                 .lastName("Brown")
                 .totalPrice(111)
                 .isDepositPaid(true)
-                .bookingDate(BookingDate.builder()
-                        .checkin("2018-01-01")
-                        .checkout("2019-01-01").build())
+                .bookingDates(BookingDate.builder()
+                        .checkIn("2018-01-01")
+                        .checkOut("2019-01-01").build())
                 .additionalNeeds("Breakfast").build();
     }
 }

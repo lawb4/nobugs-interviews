@@ -8,16 +8,14 @@ import static io.restassured.RestAssured.given;
 public class BookerUtils {
 
     public static String generateToken() {
-        String credentials = """
-                {
-                    "username": "admin",
-                    "password": "password123"
-                }
-                """;
-
         return given()
-                .spec(RequestSpec.baseSpec())
-                .body(credentials)
+                .spec(RequestSpec.noAuthSpec())
+                .body("""
+                        {
+                            "username": "admin",
+                            "password": "password123"
+                        }
+                        """)
                 .post("/auth")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
