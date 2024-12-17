@@ -32,4 +32,10 @@ public class RequestSpec {
                 .addCookie("token", BookerUtils.generateToken())
                 .build();
     }
+
+    public static RequestSpecification bearerAuthSpec() {
+        return baseSpecBuilder()
+                .addHeader("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
+                .build();
+    }
 }

@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class Booking {
     @JsonProperty("bookingid")
     private String id;
-//    @JsonProperty("booking")
-//    private Booking booking;
+    @JsonProperty("booking")
+    private Booking booking;
     @JsonProperty("firstname")
     private String firstName;
     @JsonProperty("lastname")
@@ -28,7 +28,8 @@ public class Booking {
     @JsonProperty("depositpaid")
     private boolean isDepositPaid;
     @JsonProperty("bookingdates")
-    private BookingDate bookingDates;
+    @Builder.Default
+    private BookingDate bookingDates = new BookingDate("", "");
     @JsonProperty("additionalneeds")
     private String additionalNeeds;
 }

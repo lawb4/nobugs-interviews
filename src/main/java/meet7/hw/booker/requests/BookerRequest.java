@@ -4,13 +4,14 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import meet7.hw.booker.models.Booking;
 
+import java.io.File;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
 public class BookerRequest extends Request implements CrudInterface<Booking>, SearchInterface<Booking> {
 
-    private final String BOOKING_ENDPOINT = "/booking/";
+    private final String BOOKING_ENDPOINT = "/booking";
 
     public BookerRequest(RequestSpecification reqSpec) {
         super(reqSpec);
@@ -29,7 +30,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
     public Response read(String id) {
         return given()
                 .spec(reqSpec)
-                .get(BOOKING_ENDPOINT + id);
+                .get(BOOKING_ENDPOINT + File.separator + id);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
         return given()
                 .spec(reqSpec)
                 .body(booking)
-                .put(BOOKING_ENDPOINT + id);
+                .put(BOOKING_ENDPOINT + File.separator + id);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
         return given()
                 .spec(reqSpec)
                 .body(updateData)
-                .patch(BOOKING_ENDPOINT + id);
+                .patch(BOOKING_ENDPOINT + File.separator + id);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
         return given()
                 .spec(reqSpec)
                 //.cookie("token", BookerUtils.generateToken())
-                .delete(BOOKING_ENDPOINT + id);
+                .delete(BOOKING_ENDPOINT + File.separator + id);
     }
 
     @Override

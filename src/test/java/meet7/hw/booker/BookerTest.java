@@ -21,8 +21,16 @@ public class BookerTest {
 
         List<Booking> bookings = valAuthReq.readAll();
 
-        //Assertions.assertTrue(bookings.contains(booking));
-        //Assertions.assertFalse(bookings.isEmpty());
+        Assertions.assertFalse(bookings.isEmpty());
+
+        boolean isContainsExpectedBooking = false;
+        for (Booking b : bookings) {
+            if (b.getId().equals(booking.getId())) {
+                isContainsExpectedBooking = true;
+                break;
+            }
+        }
+        Assertions.assertTrue(isContainsExpectedBooking, "The array does not contain the created booking!");
     }
 
     @Test
@@ -92,12 +100,39 @@ public class BookerTest {
     public void userCanGetAllBookingsFilterByCheckinAndCheckoutDates() {
         ValidatedBookerRequest valAuthReq = new ValidatedBookerRequest(RequestSpec.noAuthSpec());
 
-        Booking bookingObject = BookerUtils.createBaseBookingObject();
+        Booking bookingObject = BookerUtils.createBaseBookingObjectWithCustomBookingDates(
+                "1999-12-17",
+                "2019-12-17"
+        );
         Booking booking = valAuthReq.create(bookingObject).extract().as(Booking.class);
 
         List<Booking> bookings = valAuthReq.readAllByCheckinCheckoutDates(
-                "2018-01-01",
-                "2019-01-01");
+                "1999-12-17",
+                "2019-12-17");
+
+        //Assertions.assertFalse(bookings.isEmpty());
+        //Assert the response contains the expected booking
+        boolean isContainsExpectedBooking = false;
+        for (Booking b : bookings) {
+            if (b.getBookingDates().getCheckIn().equals(booking.getBookingDates().getCheckIn())
+                    && b.getBookingDates().getCheckOut().equals(booking.getBookingDates().getCheckOut())) {
+                isContainsExpectedBooking = true;
+                break;
+            }
+        }
+        Assertions.assertTrue(isContainsExpectedBooking, "Expected booking was not found");
+    }
+
+    @Test
+    public void userCanGetAllBookingsFilterByCheckinDate() {
+        ValidatedBookerRequest valAuthReq = new ValidatedBookerRequest(RequestSpec.noAuthSpec());
+
+        Booking bookingObject = BookerUtils.createBaseBookingObjectWithCustomCheckInDate("2024-12-17");
+        Booking booking = valAuthReq.create(bookingObject).extract().as(Booking.class);
+
+        List<Booking> bookings = valAuthReq.readAllByCheckinDate("2024-12-17");
+
+        Assertions.assertFalse(bookings.isEmpty());
 
         // Assert the response contains the expected booking
         boolean isContainsExpectedBooking = false;
@@ -111,6 +146,28 @@ public class BookerTest {
         Assertions.assertTrue(isContainsExpectedBooking, "Expected booking was not found");
     }
 
+    @Test
+    public void userCanGetAllBookingsFilterByCheckoutDate() {
+        ValidatedBookerRequest valAuthReq = new ValidatedBookerRequest(RequestSpec.noAuthSpec());
+
+        Booking bookingObject = BookerUtils.createBaseBookingObjectWithCustomCheckOutDate("2024-12-17");
+        Booking booking = valAuthReq.create(bookingObject).extract().as(Booking.class);
+
+        List<Booking> bookings = valAuthReq.readAllByCheckoutDate("2024-12-17");
+
+        Assertions.assertFalse(bookings.isEmpty());
+
+        // Assert the response contains the expected booking
+        boolean isContainsExpectedBooking = false;
+        for (Booking b : bookings) {
+            if (b.getBookingDates().getCheckIn().equals(booking.getBookingDates().getCheckIn())
+                    && b.getBookingDates().getCheckOut().equals(booking.getBookingDates().getCheckOut())) {
+                isContainsExpectedBooking = true;
+                break;
+            }
+        }
+        Assertions.assertTrue(isContainsExpectedBooking, "Expected booking was not found");
+    }
 
     @Test
     public void userCanGetBooking() {
@@ -158,12 +215,26 @@ public class BookerTest {
     }
 
     @Test
-    public void userCanDeleteBooking() {
+    public void userCanDeleteBookingWithCookieToken() {
         ValidatedBookerRequest valAuthReq = new ValidatedBookerRequest(RequestSpec.tokenAuthSpec());
 
         Booking bookingObject = BookerUtils.createBaseBookingObject();
         Booking booking = valAuthReq.create(bookingObject).extract().as(Booking.class);
 
         valAuthReq.delete(booking.getId());
+
+        //valAuthReq.read(booking.getId());
+    }
+
+    @Test
+    public void userCanDeleteBookingWithBearerToken() {
+        ValidatedBookerRequest valAuthReq = new ValidatedBookerRequest(RequestSpec.bearerAuthSpec());
+
+        Booking bookingObject = BookerUtils.createBaseBookingObject();
+        Booking booking = valAuthReq.create(bookingObject).extract().as(Booking.class);
+
+        valAuthReq.delete(booking.getId());
+
+        //valAuthReq.read(booking.getId());
     }
 }
