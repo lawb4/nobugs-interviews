@@ -4,7 +4,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import meet7.hw.booker.models.Booking;
 
-import java.io.File;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -30,7 +29,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
     public Response read(String id) {
         return given()
                 .spec(reqSpec)
-                .get(BOOKING_ENDPOINT + File.separator + id);
+                .get(BOOKING_ENDPOINT + "/" + id);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
         return given()
                 .spec(reqSpec)
                 .body(booking)
-                .put(BOOKING_ENDPOINT + File.separator + id);
+                .put(BOOKING_ENDPOINT + "/" + id);
     }
 
     @Override
@@ -46,14 +45,14 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
         return given()
                 .spec(reqSpec)
                 .body(updateData)
-                .patch(BOOKING_ENDPOINT + File.separator + id);
+                .patch(BOOKING_ENDPOINT + "/" + id);
     }
 
     @Override
     public Response delete(String id) {
         return given()
                 .spec(reqSpec)
-                .delete(BOOKING_ENDPOINT + File.separator + id);
+                .delete(BOOKING_ENDPOINT + "/" + id);
     }
 
     @Override
