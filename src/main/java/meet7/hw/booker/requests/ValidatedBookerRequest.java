@@ -2,7 +2,6 @@ package meet7.hw.booker.requests;
 
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import meet3.hw.task9.Book;
 import meet7.hw.booker.models.Booking;
 import org.apache.http.HttpStatus;
 
@@ -11,7 +10,7 @@ import java.util.Map;
 
 public class ValidatedBookerRequest extends Request implements CrudInterface<Booking>, SearchInterface<Booking> {
 
-    private BookerRequest bookerRequest;
+    private final BookerRequest bookerRequest;
 
     public ValidatedBookerRequest(RequestSpecification reqSpec) {
         super(reqSpec);

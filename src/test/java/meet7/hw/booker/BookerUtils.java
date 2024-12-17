@@ -5,7 +5,7 @@ import meet7.hw.booker.models.BookingDate;
 
 public class BookerUtils {
 
-    public static Booking createBaseBookingObject() {
+    public static Booking createBaseBookingObjectV1() {
         return Booking.builder()
                 .firstName("Viktor")
                 .lastName("Manuel")
@@ -17,16 +17,16 @@ public class BookerUtils {
                 .additionalNeeds("Breakfast").build();
     }
 
-    public static Booking createBaseBookingObjectWithCustomFirstName(String firstName) {
+    public static Booking createBaseBookingObjectV2() {
         return Booking.builder()
-                .firstName(firstName)
-                .lastName("Brown")
-                .totalPrice(111)
-                .isDepositPaid(true)
+                .firstName("Gene")
+                .lastName("Laurentio")
+                .totalPrice(9999)
+                .isDepositPaid(false)
                 .bookingDates(BookingDate.builder()
-                        .checkIn("2018-01-01")
-                        .checkOut("2019-01-01").build())
-                .additionalNeeds("Breakfast").build();
+                        .checkIn("1999-12-08")
+                        .checkOut("1999-12-08").build())
+                .additionalNeeds("Paper towels").build();
     }
 
     public static Booking createBaseBookingObjectWithCustomBookingDates(String checkIn, String checkOut) {
@@ -49,7 +49,7 @@ public class BookerUtils {
                 .isDepositPaid(true)
                 .bookingDates(BookingDate.builder()
                         .checkIn(checkIn)
-                        .checkOut("2019-01-01").build())
+                        .checkOut("2024-01-01").build())
                 .additionalNeeds("Breakfast").build();
     }
 
@@ -60,7 +60,7 @@ public class BookerUtils {
                 .totalPrice(111)
                 .isDepositPaid(true)
                 .bookingDates(BookingDate.builder()
-                        .checkIn("2018-01-01")
+                        .checkIn("2023-01-01")
                         .checkOut(checkOut).build())
                 .additionalNeeds("Breakfast").build();
     }
