@@ -53,7 +53,6 @@ public class BookerRequest extends Request implements CrudInterface<Booking>, Se
     public Response delete(String id) {
         return given()
                 .spec(reqSpec)
-                //.cookie("token", BookerUtils.generateToken())
                 .delete(BOOKING_ENDPOINT + File.separator + id);
     }
 
