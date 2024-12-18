@@ -1,17 +1,14 @@
 package meet7.hw.ui.saucedemo;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import meet7.hw.ui.saucedemo.ui.data.Account;
 import meet7.hw.ui.saucedemo.ui.data.ProductsForCart;
 import meet7.hw.ui.saucedemo.ui.pages.*;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.element;
 
 public class WebShopUiTest {
 
@@ -24,17 +21,14 @@ public class WebShopUiTest {
     public void userCanSuccessfullyPurchaseItems() {
         //Login page
         LogInPage registerAccountPage = new LogInPage();
-
         registerAccountPage.open();
 
-        Account account = Account.builder()
-                .username("standard_user")
-                .password("secret_sauce")
-                .build();
+        Account account = new Account();
+        account.setStandardUser();
 
-        registerAccountPage.loginAction(account);
+        registerAccountPage.clickLoginButton(account);
 
-        // Products - page
+        // Page: "Products"
         ProductsPage productsPage = new ProductsPage();
         ProductsForCart productsForCart = new ProductsForCart();
 
@@ -43,30 +37,24 @@ public class WebShopUiTest {
 
         productsPage.clickCartIcon();
 
-        // Cart - page
+        // Page: "Cart"
         CartPage cartPage = new CartPage();
         cartPage.clickCheckoutButton();
 
-        // Checkout: Your Information - page
+        // Page: "Checkout: Your Information"
         CheckoutInformationPage checkoutInformationPage = new CheckoutInformationPage();
         checkoutInformationPage.confirmInfoAndClickContinueButton();
 
-        // Checkout: Overview - page
+        // Page: "Checkout: Overview"
         CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage();
         checkoutOverviewPage.clickFinishButton();
 
-        // Checkout: Complete! - page
-        /*element(Selectors.byId("checkout_complete_container"))
-                .shouldHave(text("Thank you for your order!"));*/
+        // Page: "Checkout: Complete!"
         CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage();
-
         checkoutCompletePage.getCheckoutCompleteContainer().shouldHave(text("Thank you for your order!"));
 
-        // Go back to Products page
+        // Page: "Go back to Products page"
         checkoutCompletePage.clickBackHomeButton();
-
-        // Verify we are on Products page
-        //class title = Products (should have )
-        //Selenide.sleep(5000);
+        productsPage.getProductsTitle().shouldHave(text("Products"));
     }
 }

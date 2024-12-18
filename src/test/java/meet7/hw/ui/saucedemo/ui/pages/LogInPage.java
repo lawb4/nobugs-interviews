@@ -14,18 +14,15 @@ import static meet7.hw.ui.saucedemo.utils.Helpers.setInputIfNotNull;
 public class LogInPage {
     // Inputs
     private final SelenideElement usernameInput = element(Selectors.byId("user-name"));
-
     private final SelenideElement passwordInput = element(Selectors.byId("password"));
-
     // Buttons
     private final SelenideElement loginButton = element(Selectors.byId("login-button"));
 
-    // Methods
     public void open() {
         Selenide.open(Configuration.baseUrl);
     }
 
-    public void loginAction(Account account) {
+    public void clickLoginButton(Account account) {
         setInputIfNotNull(usernameInput, account.getUsername());
         setInputIfNotNull(passwordInput, account.getPassword());
 
