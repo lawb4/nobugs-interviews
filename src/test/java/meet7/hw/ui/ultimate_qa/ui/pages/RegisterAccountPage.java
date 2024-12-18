@@ -6,8 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import meet7.hw.ui.ultimate_qa.ui.data.Account;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.element;
 import static meet7.hw.ui.ultimate_qa.utils.Helpers.setInputIfNotNull;
 
@@ -24,7 +22,6 @@ public class RegisterAccountPage {
 
     // Checkboxes
     private SelenideElement acceptTermsCheckbox = element(Selectors.byId("user[terms]"));
-    //private SelenideElement captchaCheckbox = element(Selectors.byAttribute("type", "checkbox"));
 
     // Buttons
     private SelenideElement registerButton =
@@ -33,19 +30,6 @@ public class RegisterAccountPage {
     // Methods
     public void open() {
         Selenide.open("/users/sign_up");
-        //Selenide.sleep(5000);
-        //$("input[type='checkbox']").click();
-        //element(Selectors.byAttribute("input", "checkbox")).click();
-
-//        SelenideElement waiter = $("input").shouldHave(
-//                Condition.attribute("type", "checkbox"));
-//
-//        waiter.click();
-        //$("input[type='checkbox']").shouldBe(Condition.visible).click();
-        //$("input[type='checkbox']").should(exist).click();
-        //Selenide.sleep(5000);
-        //captchaCheckbox.click();
-
     }
 
     public void register(Account account) {
