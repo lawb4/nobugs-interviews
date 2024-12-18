@@ -1,32 +1,67 @@
 package meet7.hw.booker;
 
-import io.restassured.response.Response;
 import meet7.hw.booker.models.Booking;
 import meet7.hw.booker.models.BookingDate;
 
-import static io.restassured.RestAssured.given;
-
 public class BookerUtils {
 
-    public static Booking createBaseBookingObject() {
+    public static Booking createBaseBookingObjectV1() {
         return Booking.builder()
-                .firstName("Jim")
-                .lastName("Brown")
+                .firstName("Viktor")
+                .lastName("Manuel")
                 .totalPrice(111)
                 .isDepositPaid(true)
-                .bookingDate(BookingDate.builder()
-                        .checkin("2018-01-01")
-                        .checkout("2019-01-01").build())
+                .bookingDates(BookingDate.builder()
+                        .checkIn("2018-12-08")
+                        .checkOut("2019-12-08").build())
                 .additionalNeeds("Breakfast").build();
     }
 
-    public static Booking testPostExtractBooking(Booking booking) {
-        return given()
-                .body(booking)
-                .when()
-                .post("/booking/")
-                .then()
-                .extract()
-                .as(Booking.class);
+    public static Booking createBaseBookingObjectV2() {
+        return Booking.builder()
+                .firstName("Gene")
+                .lastName("Laurentio")
+                .totalPrice(9999)
+                .isDepositPaid(false)
+                .bookingDates(BookingDate.builder()
+                        .checkIn("1999-12-08")
+                        .checkOut("1999-12-08").build())
+                .additionalNeeds("Paper towels").build();
+    }
+
+    public static Booking createBaseBookingObjectWithCustomBookingDates(String checkIn, String checkOut) {
+        return Booking.builder()
+                .firstName("Viktor")
+                .lastName("Manuel")
+                .totalPrice(111)
+                .isDepositPaid(true)
+                .bookingDates(BookingDate.builder()
+                        .checkIn(checkIn)
+                        .checkOut(checkOut).build())
+                .additionalNeeds("Breakfast").build();
+    }
+
+    public static Booking createBaseBookingObjectWithCustomCheckInDate(String checkIn) {
+        return Booking.builder()
+                .firstName("Viktor")
+                .lastName("Manuel")
+                .totalPrice(111)
+                .isDepositPaid(true)
+                .bookingDates(BookingDate.builder()
+                        .checkIn(checkIn)
+                        .checkOut("2024-01-01").build())
+                .additionalNeeds("Breakfast").build();
+    }
+
+    public static Booking createBaseBookingObjectWithCustomCheckOutDate(String checkOut) {
+        return Booking.builder()
+                .firstName("Viktor")
+                .lastName("Manuel")
+                .totalPrice(111)
+                .isDepositPaid(true)
+                .bookingDates(BookingDate.builder()
+                        .checkIn("2023-01-01")
+                        .checkOut(checkOut).build())
+                .additionalNeeds("Breakfast").build();
     }
 }
