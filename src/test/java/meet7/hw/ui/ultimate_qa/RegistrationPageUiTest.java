@@ -37,7 +37,7 @@ public class RegistrationPageUiTest {
         Account account = Account.builder()
                 .firstName(RandomData.randomString())
                 .lastName(RandomData.randomString())
-                .email(RandomData.randomString())
+                .email(RandomData.randomString() + "@gmail.com")
                 .password(RandomData.randomString())
                 .build();
 
