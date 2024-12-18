@@ -13,12 +13,12 @@ import static meet7.hw.ui.saucedemo.utils.Helpers.setInputIfNotNull;
 @Getter
 public class LogInPage {
     // Inputs
-    private SelenideElement usernameInput = element(Selectors.byId("user-name"));
+    private final SelenideElement usernameInput = element(Selectors.byId("user-name"));
 
-    private SelenideElement passwordInput = element(Selectors.byId("password"));
+    private final SelenideElement passwordInput = element(Selectors.byId("password"));
 
     // Buttons
-    private SelenideElement loginButton = element(Selectors.byId("login-button"));
+    private final SelenideElement loginButton = element(Selectors.byId("login-button"));
 
     // Methods
     public void open() {
