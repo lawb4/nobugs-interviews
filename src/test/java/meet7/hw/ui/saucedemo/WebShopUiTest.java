@@ -2,9 +2,11 @@ package meet7.hw.ui.saucedemo;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import meet7.hw.ui.saucedemo.ui.data.Account;
-import meet7.hw.ui.saucedemo.ui.pages.LogInPage;
+import meet7.hw.ui.saucedemo.ui.data.ProductsForCart;
+import meet7.hw.ui.saucedemo.ui.pages.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,7 @@ public class WebShopUiTest {
 
     @Test
     public void userCanSuccessfullyPurchaseItems() {
+        //Login page
         LogInPage registerAccountPage = new LogInPage();
 
         registerAccountPage.open();
@@ -29,46 +32,41 @@ public class WebShopUiTest {
                 .password("secret_sauce")
                 .build();
 
-        registerAccountPage.login(account);
-
-        //Selenide.sleep(600_000); //10 minutes wait ot manually check UI
-
+        registerAccountPage.loginAction(account);
 
         // Products - page
-        SelenideElement sauceLabsBackPackAddToCartButton =
-                element(Selectors.byId("add-to-cart-sauce-labs-backpack"));
-        sauceLabsBackPackAddToCartButton.click();
+        ProductsPage productsPage = new ProductsPage();
+        ProductsForCart productsForCart = new ProductsForCart();
 
-        SelenideElement sauceLabsBoltTshirt =
-                element(Selectors.byId("add-to-cart-sauce-labs-bolt-t-shirt"));
-        sauceLabsBoltTshirt.click();
+        productsPage.addToCart(productsForCart.getSauceLabsBackPackAddToCartButton());
+        productsPage.addToCart(productsForCart.getSauceLabsBoltTshirAddToCartButton());
 
-        SelenideElement cartIcon = element(Selectors.byClassName("shopping_cart_link"));
-        cartIcon.click();
+        productsPage.clickCartIcon();
 
         // Cart - page
-        SelenideElement checkoutButton = element(Selectors.byId("checkout"));
-        checkoutButton.click();
+        CartPage cartPage = new CartPage();
+        cartPage.clickCheckoutButton();
 
         // Checkout: Your Information - page
-        SelenideElement firstNameInput = element(Selectors.byId("first-name"));
-        firstNameInput.sendKeys("test-first-name");
-
-        SelenideElement lastNameInput = element(Selectors.byId("last-name"));
-        lastNameInput.sendKeys("test-last-name");
-
-        SelenideElement zipPostalCodeInput = element(Selectors.byId("postal-code"));
-        zipPostalCodeInput.sendKeys("test-zipcode");
-
-        SelenideElement continueButton = element(Selectors.byId("continue"));
-        continueButton.click();
+        CheckoutInformationPage checkoutInformationPage = new CheckoutInformationPage();
+        checkoutInformationPage.confirmInfoAndClickContinueButton();
 
         // Checkout: Overview - page
-        SelenideElement finishButton = element(Selectors.byId("finish"));
-        finishButton.click();
+        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage();
+        checkoutOverviewPage.clickFinishButton();
 
         // Checkout: Complete! - page
-        element(Selectors.byId("checkout_complete_container"))
-                .shouldHave(text("Thank you for your order!"));
+        /*element(Selectors.byId("checkout_complete_container"))
+                .shouldHave(text("Thank you for your order!"));*/
+        CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage();
+
+        checkoutCompletePage.getCheckoutCompleteContainer().shouldHave(text("Thank you for your order!"));
+
+        // Go back to Products page
+        checkoutCompletePage.clickBackHomeButton();
+
+        // Verify we are on Products page
+        //class title = Products (should have )
+        //Selenide.sleep(5000);
     }
 }

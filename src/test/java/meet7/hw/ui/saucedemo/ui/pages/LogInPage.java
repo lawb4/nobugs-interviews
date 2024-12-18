@@ -25,7 +25,7 @@ public class LogInPage {
         Selenide.open(Configuration.baseUrl);
     }
 
-    public void login(Account account) {
+    public void loginAction(Account account) {
         setInputIfNotNull(usernameInput, account.getUsername());
         setInputIfNotNull(passwordInput, account.getPassword());
 
