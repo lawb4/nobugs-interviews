@@ -56,9 +56,10 @@ public class RegistrationPageUiTest {
         //$(".button.dropdown__toggle-button#text").shouldHave(text(account.getFirstName()));
 
         // Define SelenideElement for the button with class "button dropdown__toggle-button"
-        SelenideElement toggleButton = element(Selectors.byClassName(".button.dropdown__toggle-button"));
+        SelenideElement toggleButton = element(Selectors.byClassName("dropdown__toggle-button"));
 
-        toggleButton.$("#text").shouldHave(text(account.getFirstName()));
+        //toggleButton.$("#text").shouldHave(text(account.getFirstName()));
+        toggleButton.shouldHave(text(account.getFirstName()));
 
         //$("h1").shouldBe(visible)
 
