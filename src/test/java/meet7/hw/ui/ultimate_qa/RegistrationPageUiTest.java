@@ -1,15 +1,18 @@
 package meet7.hw.ui.ultimate_qa;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import meet7.hw.ui.ultimate_qa.ui.data.Account;
 import meet7.hw.ui.ultimate_qa.ui.pages.RegisterAccountPage;
 import meet7.hw.ui.ultimate_qa.utils.RandomData;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.element;
 
 public class RegistrationPageUiTest {
 
@@ -53,7 +56,7 @@ public class RegistrationPageUiTest {
         //$(".button.dropdown__toggle-button#text").shouldHave(text(account.getFirstName()));
 
         // Define SelenideElement for the button with class "button dropdown__toggle-button"
-        SelenideElement toggleButton = $(".button.dropdown__toggle-button");
+        SelenideElement toggleButton = element(Selectors.byClassName(".button.dropdown__toggle-button"));
 
         toggleButton.$("#text").shouldHave(text(account.getFirstName()));
 
