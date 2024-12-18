@@ -1,17 +1,14 @@
 package meet7.hw.ui.ultimate_qa;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.SelenideElement;
 import meet7.hw.ui.ultimate_qa.ui.data.Account;
-import meet7.hw.ui.ultimate_qa.ui.pages.AllProductsPage;
+import meet7.hw.ui.ultimate_qa.ui.pages.ProductsPage;
 import meet7.hw.ui.ultimate_qa.ui.pages.RegisterAccountPage;
-import meet7.hw.ui.ultimate_qa.utils.Helpers;
+import meet7.hw.ui.ultimate_qa.utils.RandomData;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.element;
 
 public class RegistrationPageUiTest {
 
@@ -21,22 +18,22 @@ public class RegistrationPageUiTest {
     }
 
     @Test
-    public void userCanCreateAccount() {
+    public void userCanSuccessfullyCreateAccount() {
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
 
         registerAccountPage.open();
 
         Account account = Account.builder()
-                .firstName(Helpers.randomString())
-                .lastName(Helpers.randomString())
-                .email(Helpers.randomString() + "@gmail.com")
-                .password(Helpers.randomString())
+                .firstName(RandomData.randomString())
+                .lastName(RandomData.randomString())
+                .email(RandomData.randomString() + "@gmail.com")
+                .password(RandomData.randomString())
                 .build();
 
         registerAccountPage.register(account);
 
-        AllProductsPage allProductsPage = new AllProductsPage();
-        SelenideElement toggleButton = element(Selectors.byClassName("dropdown__toggle-button"));
-        toggleButton.shouldHave(text(account.getFirstName()));
+        ProductsPage productsPage = new ProductsPage();
+        // Verify user is successfully registered and is located on "Products" page
+        productsPage.getToggleButton().shouldHave(text(account.getFirstName()));
     }
 }
