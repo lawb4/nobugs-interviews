@@ -24,8 +24,7 @@ public class RegisterAccountPage {
 
     // Checkboxes
     private SelenideElement acceptTermsCheckbox = element(Selectors.byId("user[terms]"));
-    private SelenideElement captchaCheckbox =
-            element(Selectors.byAttribute("type", "checkbox"));
+    //private SelenideElement captchaCheckbox = element(Selectors.byAttribute("type", "checkbox"));
 
     // Buttons
     private SelenideElement registerButton =
@@ -44,8 +43,8 @@ public class RegisterAccountPage {
 //        waiter.click();
         //$("input[type='checkbox']").shouldBe(Condition.visible).click();
         //$("input[type='checkbox']").should(exist).click();
-        Selenide.sleep(5000);
-        captchaCheckbox.click();
+        //Selenide.sleep(5000);
+        //captchaCheckbox.click();
 
     }
 
@@ -54,6 +53,7 @@ public class RegisterAccountPage {
         setInputIfNotNull(lastNameInput, account.getLastName());
         setInputIfNotNull(emailInput, account.getEmail());
         setInputIfNotNull(passwordInput, account.getPassword());
+        acceptTermsCheckbox.click();
 
         registerButton.click();
     }

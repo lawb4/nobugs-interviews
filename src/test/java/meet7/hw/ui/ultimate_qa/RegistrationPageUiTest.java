@@ -1,15 +1,15 @@
 package meet7.hw.ui.ultimate_qa;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.SelenideElement;
 import meet7.hw.ui.ultimate_qa.ui.data.Account;
 import meet7.hw.ui.ultimate_qa.ui.pages.RegisterAccountPage;
 import meet7.hw.ui.ultimate_qa.utils.RandomData;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationPageUiTest {
 
@@ -17,7 +17,7 @@ public class RegistrationPageUiTest {
     public static void setupUiTests() {
         //Configuration.browser = "safari";
 
-        Configuration.pageLoadStrategy ="eager";
+        //Configuration.pageLoadStrategy ="eager";
         //System.setProperty("selenide.pageLoadStrategy", "eager");
 
 
@@ -33,7 +33,6 @@ public class RegistrationPageUiTest {
         registerAccountPage.open();
         //Selenide.sleep(600_000); //10minutes
 
-        //String password = RandomData.randomString();
         Account account = Account.builder()
                 .firstName(RandomData.randomString())
                 .lastName(RandomData.randomString())
@@ -43,7 +42,22 @@ public class RegistrationPageUiTest {
 
         registerAccountPage.register(account);
 
-        Selenide.sleep(600_000); //10minutes подождать, чтобы чекнуть регистрацию
+        //Selenide.sleep(600_000); //10minutes подождать, чтобы чекнуть регистрацию
+
+        //
+//        SelenideElement menuWithUsername =
+//                element(Selectors.byClassName("button.dropdown__toggle-button"));
+//
+//        menuWithUsername.shouldBe(visible);
+//        menuWithUsername.shouldHave(Condition.text(username));
+        //$(".button.dropdown__toggle-button#text").shouldHave(text(account.getFirstName()));
+
+        // Define SelenideElement for the button with class "button dropdown__toggle-button"
+        SelenideElement toggleButton = $(".button.dropdown__toggle-button");
+
+        toggleButton.$("#text").shouldHave(text(account.getFirstName()));
+
+        //$("h1").shouldBe(visible)
 
 //        successfulRegistrationPage.getRightPanelWithWelcomeUsernameHeading()
 //                .shouldHave(Condition.text(String.format("Welcome %s", Account.getUsername())));
